@@ -107,20 +107,20 @@ class Library(object):
 			if libsOption is not None:
 				return '`%s %s`' % (configScript, libsOption)
 		if distroRoot is None or cls.isSystemLibrary(platform):
-			return '-l%s' % cls.getLibName(platform)
+			flags = [ '-l%s' % cls.getLibName(platform) ]
 		else:
 			flags = [
 				'%s/lib/lib%s.a' % (distroRoot, cls.getLibName(platform))
 				] if linkStatic else [
 				'-L%s/lib -l%s' % (distroRoot, cls.getLibName(platform))
 				]
-			dependentFlags = [
-				librariesByName[name].getLinkFlags(
-					platform, linkStatic, distroRoot
-					)
-				for name in cls.dependsOn
-				]
-			return ' '.join(flags + dependentFlags)
+		dependentFlags = [
+			librariesByName[name].getLinkFlags(
+				platform, linkStatic, distroRoot
+				)
+			for name in cls.dependsOn
+			]
+		return ' '.join(flags + dependentFlags)
 
 	@classmethod
 	def getVersion(cls, platform, linkStatic, distroRoot):

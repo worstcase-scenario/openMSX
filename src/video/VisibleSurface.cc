@@ -368,9 +368,74 @@ void VisibleSurface::saveScreenshotGL(
 	PNG::saveRGBA(w, rowPointers, filename);
 }
 
+static GLuint _cur_prog=0,_cur_vbo=0;
+static GLint  _cur_pos=-1;
+static bool   _cur_failed=false;
+static int    _cur_last_x=-1,_cur_last_y=-1;
+static Uint32 _cur_last_move=0;
+static void drawSoftwareCursor(SDL_Window* w)
+{
+    if(_cur_failed) return;
+    GLint curProg=0;
+    glGetIntegerv(GL_CURRENT_PROGRAM,&curProg);
+    if(curProg==0) return;
+    int mx,my,ww,wh;
+    SDL_GetMouseState(&mx,&my);
+    if(mx!=_cur_last_x||my!=_cur_last_y){
+        _cur_last_x=mx; _cur_last_y=my;
+        _cur_last_move=SDL_GetTicks();
+    }
+    if(SDL_GetTicks()-_cur_last_move>3000) return;
+    if(_cur_prog==0){
+        const char* vsh="#version 100\nattribute vec2 p;\nvoid main(){gl_Position=vec4(p,0.0,1.0);}\n";
+        const char* fsh="#version 100\nprecision mediump float;\nvoid main(){gl_FragColor=vec4(1.0,1.0,1.0,1.0);}\n";
+        GLuint vs=glCreateShader(GL_VERTEX_SHADER);
+        glShaderSource(vs,1,&vsh,0); glCompileShader(vs);
+        GLint ok=0; glGetShaderiv(vs,GL_COMPILE_STATUS,&ok);
+        if(!ok){char buf[256];glGetShaderInfoLog(vs,256,0,buf);fprintf(stderr,"CURSOR VS: %s\n",buf);_cur_failed=true;return;}
+        GLuint fs=glCreateShader(GL_FRAGMENT_SHADER);
+        glShaderSource(fs,1,&fsh,0); glCompileShader(fs);
+        glGetShaderiv(fs,GL_COMPILE_STATUS,&ok);
+        if(!ok){char buf[256];glGetShaderInfoLog(fs,256,0,buf);fprintf(stderr,"CURSOR FS: %s\n",buf);_cur_failed=true;return;}
+        _cur_prog=glCreateProgram();
+        glAttachShader(_cur_prog,vs); glAttachShader(_cur_prog,fs);
+        glLinkProgram(_cur_prog);
+        glGetProgramiv(_cur_prog,GL_LINK_STATUS,&ok);
+        if(!ok){char buf[256];glGetProgramInfoLog(_cur_prog,256,0,buf);fprintf(stderr,"CURSOR LINK: %s\n",buf);_cur_failed=true;return;}
+        glDeleteShader(vs); glDeleteShader(fs);
+        _cur_pos=glGetAttribLocation(_cur_prog,"p");
+        glGenBuffers(1,&_cur_vbo);
+    }
+    SDL_GetWindowSize(w,&ww,&wh);
+    if(ww<=0||wh<=0) return;
+    // Save current viewport and override to full window
+    GLint vp[4];
+    glGetIntegerv(GL_VIEWPORT,vp);
+    glViewport(0,0,ww,wh);
+    // Map mouse to full window NDC
+    float cx=(float)mx/ww*2.0f-1.0f;
+    float cy=1.0f-(float)my/wh*2.0f;
+    float sx=0.025f, sy=sx*(float)ww/(float)wh;
+    float v[]={cx,cy, cx+sx,cy-sy*0.5f, cx+sx*0.45f,cy-sy*1.3f};
+    GLint prevVbo;
+    glGetIntegerv(GL_ARRAY_BUFFER_BINDING,&prevVbo);
+    glUseProgram(_cur_prog);
+    glBindBuffer(GL_ARRAY_BUFFER,_cur_vbo);
+    glBufferData(GL_ARRAY_BUFFER,sizeof(v),v,GL_DYNAMIC_DRAW);
+    glEnableVertexAttribArray(_cur_pos);
+    glVertexAttribPointer(_cur_pos,2,GL_FLOAT,GL_FALSE,0,0);
+    glDisable(GL_BLEND);
+    glDisable(GL_DEPTH_TEST);
+    glDrawArrays(GL_TRIANGLES,0,3);
+    glDisableVertexAttribArray(_cur_pos);
+    glBindBuffer(GL_ARRAY_BUFFER,prevVbo);
+    glUseProgram(curProg);
+    glViewport(vp[0],vp[1],vp[2],vp[3]);
+}
 void VisibleSurface::finish()
 {
-	SDL_GL_SwapWindow(window.get());
+    drawSoftwareCursor(window.get());
+    SDL_GL_SwapWindow(window.get());
 }
 
 std::unique_ptr<Layer> VisibleSurface::createSnowLayer()

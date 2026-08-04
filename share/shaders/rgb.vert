@@ -14,7 +14,5 @@ void main()
 	vec2 tmp = a_texCoord.xy * texSize.xy;
 	scaled = tmp.xxxy + vec4(0.0, 1.0/3.0, 2.0/3.0, 0.5);
 	pos        = a_texCoord.xy;
-#if SUPERIMPOSE
-	videoCoord = a_texCoord.xz;
-#endif
+videoCoord = a_texCoord.xz;
 }

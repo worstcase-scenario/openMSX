@@ -25,7 +25,5 @@ void main()
 
 	texStep2 = 2.0 * texStep;
 
-#if SUPERIMPOSE
-	videoCoord = a_texCoord.xz;
-#endif
+videoCoord = a_texCoord.xz;
 }

@@ -19,13 +19,7 @@ void main()
 	vec4 col2 = texture2D(tex, t.yz);
 
 	float scan = scan_c + scan_b * abs(fract(scaled.y) - scan_a);
-#if SUPERIMPOSE
-	vec4 col = (col1 + col2) / 2.0;
+vec4 col = (col1 + col2) / 2.0;
 	vec4 vid = texture2D(videoTex, videoCoord);
 	gl_FragColor = mix(vid, col, col.a) * scan;
-#else
-	// optimization: in case of not-superimpose, we moved the division by 2
-	// '(col1 + col2) / 2' to the 'scan_b' and 'scan_c' variables.
-	gl_FragColor = (col1 + col2) * scan;
-#endif
 }

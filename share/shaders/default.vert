@@ -11,7 +11,5 @@ void main()
 {
 	gl_Position = u_mvpMatrix * a_position;
 	texCoord   = a_texCoord.xy;
-#if SUPERIMPOSE
-	videoCoord = a_texCoord.xz;
-#endif
+videoCoord = a_texCoord.xz;
 }

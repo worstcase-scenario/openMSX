@@ -148,18 +148,15 @@ void Shader::init(GLenum type, std::string_view header, std::string_view filenam
 	if constexpr (OPENGL_VERSION == OPENGL_ES_2_0) {
 		source += "#version 100\n";
 		if (type == GL_FRAGMENT_SHADER) {
-			source += "#ifdef GL_FRAGMENT_PRECISION_HIGH\n"
-				"  precision highp float;\n"
-				"#else\n"
-				"  precision mediump float;\n"
-				"#endif\n";
+			
+				source += "precision highp float;\n";
 		}
 	} else {
 		source += "#version 110\n";
 	}
 	source += header;
 	try {
-		File file(systemFileContext().resolve(tmpStrCat("shaders/", filename)));
+		File file(preferSystemFileContext().resolve(tmpStrCat("shaders/", filename)));
 		auto mmap = file.mmap();
 		source.append(std::bit_cast<const char*>(mmap.data()),
 		              mmap.size());

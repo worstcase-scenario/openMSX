@@ -373,7 +373,7 @@ def main(compileCommandStr, outDir, platform, linkMode, thirdPartyInstall):
 			elif platform.endswith('bsd') or platform == 'dragonfly':
 				distroRoot = environ.get('LOCALBASE', '/usr/local')
 				print('Using libraries from ports directory %s.' % distroRoot)
-			elif platform == 'pandora':
+			else:
 				distroRoot = environ.get('LIBTOOL_SYSROOT_PATH')
 				if distroRoot is not None:
 					distroRoot += '/usr'

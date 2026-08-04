@@ -1277,7 +1277,7 @@ std::span<const uint8_t, 64> YM2413::peekRegs() const
 
 } // namespace YM2413Burczynski
 
-static constexpr std::initializer_list<enum_string<YM2413Burczynski::Slot::EnvelopeState>> envelopeStateInfo = {
+static const std::initializer_list<enum_string<YM2413Burczynski::Slot::EnvelopeState>> envelopeStateInfo = {
 	{ "DUMP",    YM2413Burczynski::Slot::EnvelopeState::DUMP    },
 	{ "ATTACK",  YM2413Burczynski::Slot::EnvelopeState::ATTACK  },
 	{ "DECAY",   YM2413Burczynski::Slot::EnvelopeState::DECAY   },

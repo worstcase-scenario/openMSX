@@ -145,7 +145,7 @@ void DriveMultiplexer::invalidateWd2793ReadTrackQuirk()
 }
 
 
-static constexpr std::initializer_list<enum_string<DriveMultiplexer::Drive>> driveNumInfo = {
+static const std::initializer_list<enum_string<DriveMultiplexer::Drive>> driveNumInfo = {
 	{ "A",    DriveMultiplexer::Drive::A },
 	{ "B",    DriveMultiplexer::Drive::B },
 	{ "C",    DriveMultiplexer::Drive::C },

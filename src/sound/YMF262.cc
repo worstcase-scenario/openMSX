@@ -1593,7 +1593,7 @@ void YMF262::generateChannels(std::span<float*> bufs, unsigned num)
 }
 
 
-static constexpr std::initializer_list<enum_string<YMF262::EnvelopeState>> envelopeStateInfo = {
+static const std::initializer_list<enum_string<YMF262::EnvelopeState>> envelopeStateInfo = {
 	{ "ATTACK",  YMF262::EnvelopeState::ATTACK  },
 	{ "DECAY",   YMF262::EnvelopeState::DECAY   },
 	{ "SUSTAIN", YMF262::EnvelopeState::SUSTAIN },

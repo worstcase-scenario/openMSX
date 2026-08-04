@@ -894,7 +894,7 @@ void V9990::scheduleHscan(EmuTime time)
 	syncHScan.setSyncPoint(hScanSyncTime);
 }
 
-static constexpr std::initializer_list<enum_string<V9990DisplayMode>> displayModeInfo = {
+static const std::initializer_list<enum_string<V9990DisplayMode>> displayModeInfo = {
 	{ "P1", V9990DisplayMode::P1 }, { "P2", V9990DisplayMode::P2 },
 	{ "B0", V9990DisplayMode::B0 }, { "B1", V9990DisplayMode::B1 },
 	{ "B2", V9990DisplayMode::B2 }, { "B3", V9990DisplayMode::B3 },

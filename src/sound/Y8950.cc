@@ -1248,7 +1248,7 @@ void Y8950::Patch::serialize(Archive& ar, unsigned /*version*/)
 	             "RR", RR);
 }
 
-static constexpr std::initializer_list<enum_string<Y8950::EnvelopeState>> envelopeStateInfo = {
+static const std::initializer_list<enum_string<Y8950::EnvelopeState>> envelopeStateInfo = {
 	{ "ATTACK",  Y8950::EnvelopeState::ATTACK  },
 	{ "DECAY",   Y8950::EnvelopeState::DECAY   },
 	{ "SUSTAIN", Y8950::EnvelopeState::SUSTAIN },

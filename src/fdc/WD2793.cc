@@ -1073,7 +1073,7 @@ void WD2793::endCmd(EmuTime time)
 }
 
 
-static constexpr std::initializer_list<enum_string<WD2793::FSM>> fsmStateInfo = {
+static const std::initializer_list<enum_string<WD2793::FSM>> fsmStateInfo = {
 	{ "NONE",              WD2793::FSM::NONE },
 	{ "SEEK",              WD2793::FSM::SEEK },
 	{ "TYPE2_LOADED",      WD2793::FSM::TYPE2_LOADED },

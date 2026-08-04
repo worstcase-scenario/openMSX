@@ -160,7 +160,7 @@ void DebugDevice::openOutput(std::string_view name)
 	}
 }
 
-static constexpr std::initializer_list<enum_string<DebugDevice::Mode>> debugModeInfo = {
+static const std::initializer_list<enum_string<DebugDevice::Mode>> debugModeInfo = {
 	{ "OFF",        DebugDevice::Mode::OFF },
 	{ "SINGLEBYTE", DebugDevice::Mode::SINGLEBYTE },
 	{ "MULTIBYTE",  DebugDevice::Mode::MULTIBYTE },

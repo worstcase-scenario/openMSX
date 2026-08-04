@@ -322,7 +322,7 @@ void SdCard::executeCommand()
 	}
 }
 
-static constexpr std::initializer_list<enum_string<SdCard::Mode>> modeInfo = {
+static const std::initializer_list<enum_string<SdCard::Mode>> modeInfo = {
 	{ "COMMAND",     SdCard::Mode::COMMAND  },
 	{ "READ",        SdCard::Mode::READ },
 	{ "MULTI_READ",  SdCard::Mode::MULTI_READ },

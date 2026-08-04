@@ -1592,7 +1592,7 @@ std::span<const uint8_t, 64> YM2413::peekRegs() const
 
 } // namespace YM2413Okazaki
 
-static constexpr std::initializer_list<enum_string<YM2413Okazaki::Slot::EnvelopeState>> envelopeStateInfo = {
+static const std::initializer_list<enum_string<YM2413Okazaki::Slot::EnvelopeState>> envelopeStateInfo = {
 	{ "ATTACK",  YM2413Okazaki::Slot::EnvelopeState::ATTACK  },
 	{ "DECAY",   YM2413Okazaki::Slot::EnvelopeState::DECAY   },
 	{ "SUSHOLD", YM2413Okazaki::Slot::EnvelopeState::SUSHOLD },

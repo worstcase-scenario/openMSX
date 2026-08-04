@@ -543,7 +543,7 @@ void SCC::Debuggable::write(unsigned address, uint8_t value, EmuTime time)
 }
 
 
-static constexpr std::initializer_list<enum_string<SCC::Mode>> chipModeInfo = {
+static const std::initializer_list<enum_string<SCC::Mode>> chipModeInfo = {
 	{ "Real",       SCC::Mode::Real       },
 	{ "Compatible", SCC::Mode::Compatible },
 	{ "Plus",       SCC::Mode::Plus   },

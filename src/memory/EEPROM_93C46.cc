@@ -227,7 +227,7 @@ void EEPROM_93C46::execute_command(EmuTime time)
 	}
 }
 
-static constexpr std::initializer_list<enum_string<EEPROM_93C46::State>> stateInfo = {
+static const std::initializer_list<enum_string<EEPROM_93C46::State>> stateInfo = {
 	{ "IN_RESET",           EEPROM_93C46::State::IN_RESET           },
 	{ "WAIT_FOR_START_BIT", EEPROM_93C46::State::WAIT_FOR_START_BIT },
 	{ "WAIT_FOR_COMMAND",   EEPROM_93C46::State::WAIT_FOR_COMMAND   },

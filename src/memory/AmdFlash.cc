@@ -1040,7 +1040,7 @@ void AmdFlash::execOperation(EmuTime time)
 	}
 }
 
-static constexpr std::initializer_list<enum_string<AmdFlash::State>> stateInfo = {
+static const std::initializer_list<enum_string<AmdFlash::State>> stateInfo = {
 	{ "IDLE",         AmdFlash::State::READ },       // back compat with v3
 	{ "IDENT",        AmdFlash::State::AUTOSELECT }, // back compat with v3
 	{ "PRGERR",       AmdFlash::State::ERROR },      // back compat with v3

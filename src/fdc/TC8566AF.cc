@@ -915,7 +915,7 @@ EmuDuration TC8566AF::getSeekDelay() const
 }
 
 
-static constexpr std::initializer_list<enum_string<TC8566AF::Command>> commandInfo = {
+static const std::initializer_list<enum_string<TC8566AF::Command>> commandInfo = {
 	{ "UNKNOWN",                TC8566AF::Command::UNKNOWN                },
 	{ "READ_DATA",              TC8566AF::Command::READ_DATA              },
 	{ "WRITE_DATA",             TC8566AF::Command::WRITE_DATA             },
@@ -935,7 +935,7 @@ static constexpr std::initializer_list<enum_string<TC8566AF::Command>> commandIn
 };
 SERIALIZE_ENUM(TC8566AF::Command, commandInfo);
 
-static constexpr std::initializer_list<enum_string<TC8566AF::Phase>> phaseInfo = {
+static const std::initializer_list<enum_string<TC8566AF::Phase>> phaseInfo = {
 	{ "IDLE",         TC8566AF::Phase::IDLE         },
 	{ "COMMAND",      TC8566AF::Phase::COMMAND      },
 	{ "DATATRANSFER", TC8566AF::Phase::DATA_TRANSFER },
@@ -943,7 +943,7 @@ static constexpr std::initializer_list<enum_string<TC8566AF::Phase>> phaseInfo =
 };
 SERIALIZE_ENUM(TC8566AF::Phase, phaseInfo);
 
-static constexpr std::initializer_list<enum_string<TC8566AF::Seek>> seekInfo = {
+static const std::initializer_list<enum_string<TC8566AF::Seek>> seekInfo = {
 	{ "IDLE",        TC8566AF::Seek::IDLE },
 	{ "SEEK",        TC8566AF::Seek::SEEK },
 	{ "RECALIBRATE", TC8566AF::Seek::RECALIBRATE }

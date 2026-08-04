@@ -440,7 +440,7 @@ void WD33C93::reset(bool scsiReset)
 }
 
 
-static constexpr std::initializer_list<enum_string<SCSI::Phase>> phaseInfo = {
+static const std::initializer_list<enum_string<SCSI::Phase>> phaseInfo = {
 	{ "UNDEFINED",   SCSI::Phase::UNDEFINED   },
 	{ "BUS_FREE",    SCSI::Phase::BUS_FREE    },
 	{ "ARBITRATION", SCSI::Phase::ARBITRATION },

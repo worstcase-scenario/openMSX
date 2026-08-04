@@ -537,7 +537,7 @@ VLM5030::~VLM5030()
 	unregisterSound();
 }
 
-static constexpr std::initializer_list<enum_string<VLM5030::Phase>> phaseInfo = {
+static const std::initializer_list<enum_string<VLM5030::Phase>> phaseInfo = {
 	{ "RESET", VLM5030::Phase::RESET },
 	{ "IDLE",  VLM5030::Phase::IDLE  },
 	{ "SETUP", VLM5030::Phase::SETUP },

@@ -672,7 +672,7 @@ void CassettePlayer::execSyncAudioEmu(EmuTime time)
 	syncScheduled = false;
 }
 
-static constexpr std::initializer_list<enum_string<CassettePlayer::State>> stateInfo = {
+static const std::initializer_list<enum_string<CassettePlayer::State>> stateInfo = {
 	{ "PLAY",   CassettePlayer::State::PLAY   },
 	{ "RECORD", CassettePlayer::State::RECORD },
 	{ "STOP",   CassettePlayer::State::STOP   }

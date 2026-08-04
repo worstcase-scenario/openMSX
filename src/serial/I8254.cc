@@ -461,7 +461,7 @@ void Counter::advance(EmuTime time)
 }
 
 
-static constexpr std::initializer_list<enum_string<Counter::ByteOrder>> byteOrderInfo = {
+static const std::initializer_list<enum_string<Counter::ByteOrder>> byteOrderInfo = {
 	{ "LOW",  Counter::ByteOrder::LOW  },
 	{ "HIGH", Counter::ByteOrder::HIGH }
 };

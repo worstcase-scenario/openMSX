@@ -25,12 +25,7 @@ void main()
 	vec3 m = saturate((-BIG * fract(scaled.zyx)) + vec3(2.0 * BIG / 3.0));
 
 	vec4 col = texture2D(tex, pos);
-#if SUPERIMPOSE
-	vec4 vid = texture2D(videoTex, videoCoord);
-	vec4 p = mix(vid, col, col.a);
-#else
-	vec4 p = col;
-#endif
+vec4 p = col;
 	vec3 n = p.rgb * scan_c2;
 	vec3 s_n = n * c1_2_2 + saturate((n - 1.0) / 2.0);
 	gl_FragColor.rgb = n + m * s_n;

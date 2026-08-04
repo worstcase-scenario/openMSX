@@ -19,7 +19,5 @@ void main()
 	coord2pi = a_texCoord.xy * texSize.xy * pi2;
 	texStep = 1.0 / texSize.xy;
 
-#if SUPERIMPOSE
-	videoCoord = a_texCoord.xz;
-#endif
+
 }

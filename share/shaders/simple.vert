@@ -18,7 +18,5 @@ void main()
 	misc = vec3((vec2(0.5) - vec2(1.0, 0.0) * alpha) * texStepX.x, a_texCoord.y);
 	scaled = a_texCoord.xy * texSize.xy + vec2(0.0, 0.5);
 
-#if SUPERIMPOSE
-	videoCoord = a_texCoord.xz;
-#endif
+
 }

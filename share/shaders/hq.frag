@@ -27,10 +27,5 @@ void main()
 
 	vec4 col = cx * weights.x + cy * weights.y + c5 * weights.z;
 
-#if SUPERIMPOSE
-	vec4 vid = texture2D(videoTex, videoCoord);
-	gl_FragColor = mix(vid, col, col.a);
-#else
-	gl_FragColor = col;
-#endif
+gl_FragColor = col;
 }

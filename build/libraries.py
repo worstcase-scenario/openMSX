@@ -86,7 +86,7 @@ class Library(object):
 		elif distroRoot is None or cls.isSystemLibrary(platform):
 			flags = []
 		else:
-			flags = [ '-isystem %s/include' % distroRoot ]
+			flags = [ '-I%s/include' % distroRoot ]
 		dependentFlags = [
 			librariesByName[name].getCompileFlags(
 				platform, linkStatic, distroRoot

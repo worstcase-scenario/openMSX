@@ -270,7 +270,7 @@ class GLEW(Library):
 		if platform.startswith('mingw') and linkStatic:
 			return '%s -DGLEW_STATIC' % flags
 		else:
-			return flags
+			return '%s -DGLEW_NO_GLU' % flags
 
 class LibPNG(Library):
 	libName = 'png16'
